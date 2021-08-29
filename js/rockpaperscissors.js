@@ -9,86 +9,97 @@ const paper_div = document.getElementById("p");
 const scissors_div = document.getElementById("s");
 
 function getComputerChoice() {
-    const choices = ['r', 'p', 's'];
-    const randomNumber = Math.floor(Math.random() * 3);
-    return choices[randomNumber];
+  const choices = ["r", "p", "s"];
+  const randomNumber = Math.floor(Math.random() * 3);
+  return choices[randomNumber];
 }
 
 function converToWord(letter) {
-    switch (letter) {
-        case "r":
-            return "Rock"
-            break;
-        case "p":
-            return "Paper"
-            break;
-        case "s":
-            return "Scissors"
-            break;
-    }
-
+  switch (letter) {
+    case "r":
+      return "Piedra";
+      break;
+    case "p":
+      return "Papel";
+      break;
+    case "s":
+      return "Tijeras";
+      break;
+  }
 }
 
 function win(userChoice, computerChoice) {
-    const smallUserWord = "user".fontsize(3).sub();
-    const smallCompWord = "comp".fontsize(3).sub();
-    const userChoice_div = document.getElementById(userChoice);
-    userScore++;
-    userScore_span.innerHTML = userScore;
-    computerScore_span.innerHTML = computerScore;
-    result_p.innerHTML = `${converToWord(userChoice)}${smallUserWord} beats ${converToWord(computerChoice)}${smallCompWord} You Win! 🔥`;
-    userChoice_div.classList.add('green-glow');
-    setTimeout(() => userChoice_div.classList.remove('green-glow'), 300);
+  const smallUserWord = "Jugador".fontsize(3).sub();
+  const smallCompWord = "Computador".fontsize(3).sub();
+  const userChoice_div = document.getElementById(userChoice);
+  userScore++;
+  userScore_span.innerHTML = userScore;
+  computerScore_span.innerHTML = computerScore;
+  result_p.innerHTML = `${converToWord(
+    userChoice
+  )}${smallUserWord} vence a ${converToWord(
+    computerChoice
+  )}${smallCompWord} Tu Ganas! 🔥`;
+  userChoice_div.classList.add("green-glow");
+  setTimeout(() => userChoice_div.classList.remove("green-glow"), 300);
 }
 
 function lose(userChoice, computerChoice) {
-    const smallUserWord = "user".fontsize(3).sub();
-    const smallCompWord = "comp".fontsize(3).sub();
-    const userChoice_div = document.getElementById(userChoice);
-    computerScore++;
-    userScore_span.innerHTML = userScore;
-    computerScore_span.innerHTML = computerScore;
-    result_p.innerHTML = `${converToWord(userChoice)}${smallUserWord} loses ${converToWord(computerChoice)}${smallCompWord} You Lost... 💩`;
-    userChoice_div.classList.add('red-glow');
-    setTimeout(() => userChoice_div.classList.remove('red-glow'), 300);
+  const smallUserWord = "Jugador".fontsize(3).sub();
+  const smallCompWord = "Computador".fontsize(3).sub();
+  const userChoice_div = document.getElementById(userChoice);
+  computerScore++;
+  userScore_span.innerHTML = userScore;
+  computerScore_span.innerHTML = computerScore;
+  result_p.innerHTML = `${converToWord(
+    userChoice
+  )}${smallUserWord} pierde contra ${converToWord(
+    computerChoice
+  )}${smallCompWord} Pierdes... 💩`;
+  userChoice_div.classList.add("red-glow");
+  setTimeout(() => userChoice_div.classList.remove("red-glow"), 300);
 }
 
 function draw(userChoice, computerChoice) {
-    const smallUserWord = "user".fontsize(3).sub();
-    const smallCompWord = "comp".fontsize(3).sub();
-    const userChoice_div = document.getElementById(userChoice);
-    result_p.innerHTML = `${converToWord(userChoice)}${smallUserWord} equals ${converToWord(computerChoice)}${smallCompWord} It's a Draw. 🤝"`;
-    userChoice_div.classList.add('gray-glow');
-    setTimeout(() => userChoice_div.classList.remove('gray-glow'), 300);
+  const smallUserWord = "Jugador".fontsize(3).sub();
+  const smallCompWord = "Computador".fontsize(3).sub();
+  const userChoice_div = document.getElementById(userChoice);
+  result_p.innerHTML = `${converToWord(
+    userChoice
+  )}${smallUserWord} es igual a ${converToWord(
+    computerChoice
+  )}${smallCompWord} Es un Empate. 🤝"`;
+  userChoice_div.classList.add("gray-glow");
+  setTimeout(() => userChoice_div.classList.remove("gray-glow"), 300);
 }
 
 function game(userChoice) {
-    const computerChoice = getComputerChoice();
-    switch (userChoice + computerChoice) {
-        case "rs":
-        case "pr":
-        case "sp":
-            win(userChoice, computerChoice);
-            break;
-        case "sr":
-        case "rp":
-        case "ps":
-            lose(userChoice, computerChoice);
-            break;
-        case "rr":
-        case "pp":
-        case "ss":
-            draw(userChoice, computerChoice);
-            break;
-    }
+  const computerChoice = getComputerChoice();
+  switch (userChoice + computerChoice) {
+    case "rs":
+    case "pr":
+    case "sp":
+      win(userChoice, computerChoice);
+      break;
+    case "sr":
+    case "rp":
+    case "ps":
+      lose(userChoice, computerChoice);
+      break;
+    case "rr":
+    case "pp":
+    case "ss":
+      draw(userChoice, computerChoice);
+      break;
+  }
 }
 
 function main() {
-    rock_div.addEventListener('click', () => game("r"));
+  rock_div.addEventListener("click", () => game("r"));
 
-    paper_div.addEventListener('click', () => game("p"));
+  paper_div.addEventListener("click", () => game("p"));
 
-    scissors_div.addEventListener('click', () => game("s"));
+  scissors_div.addEventListener("click", () => game("s"));
 }
 
 main();
